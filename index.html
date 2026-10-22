@@ -45,12 +45,16 @@
     </a>
     <button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span></button>
     <nav class="menu" id="menu" aria-label="Principal">
-      <a href="#solucao">Solução</a>
-      <a href="#estoque">Mapa e estoque</a>
-      <a href="#reservas">Reservas</a>
-      <a href="#integracao">Integração</a>
+      <!--SUBMENU--><div class="menu-grupo">
+        <button class="menu-topo" type="button" aria-expanded="false" aria-haspopup="true">Sistema de gestão imobiliária<span aria-hidden="true">▾</span></button>
+        <div class="submenu">
+          <a href="sistema-de-alugueis-para-imobiliarias.html">Locação<small>Imobiliárias: CRM e administração de aluguéis</small></a>
+          <a href="sistema-para-predios-e-construtoras.html">Venda<small>Prédios, unidades e construtoras</small></a>
+          <a href="sistema-para-loteamentos.html">Loteamentos<small>Quadras, lotes, mapa e reservas</small></a>
+        </div>
+      </div><!--/SUBMENU-->
       <a href="regularizacao-fundiaria-e-georreferenciamento.html">Agrimensura</a>
-      <a href="#implantacao">Implantação</a>
+      <a href="#planos">Planos</a>
       <a href="#faq">Dúvidas</a>
       <a class="btn btn--primary btn--sm" href="#contato">Agendar demonstração</a>
     </nav>
@@ -553,9 +557,10 @@
       <div class="card">
         <h3>Implantação (única)</h3>
         <table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:.95rem">
-          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line)">Implantação base — interface padrão SKL</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap"><b>R$ 4.800</b></td></tr>
-          <tr><td style="padding:8px 0">Implantação personalizada — identidade visual própria</td><td style="padding:8px 0;text-align:right;white-space:nowrap"><b>Sob proposta</b></td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line)">Implantação base — interface padrão SKL</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap"><b>Sob orçamento</b></td></tr>
+          <tr><td style="padding:8px 0">Implantação personalizada — identidade visual própria</td><td style="padding:8px 0;text-align:right;white-space:nowrap"><b>Sob orçamento</b></td></tr>
         </table>
+        <p style="margin:14px 0 0;font-size:.92rem;color:var(--muted)">O valor da implantação depende do tamanho da operação, da quantidade de dados a carregar e da personalização. Mande uma mensagem e enviamos o orçamento.</p>
       </div>
       <div class="card">
         <h3>Mensalidade (usuários ativos)</h3>

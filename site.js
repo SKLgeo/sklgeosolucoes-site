@@ -29,6 +29,22 @@
     window.addEventListener("resize", function () { if (window.innerWidth > 1080) fecharMenu(); });
   }
 
+  // Aba com subabas: abre/fecha no toque ou clique (no computador também abre ao passar o mouse)
+  document.querySelectorAll(".menu-grupo").forEach(function (grupo) {
+    var botao = grupo.querySelector(".menu-topo");
+    botao.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var aberto = grupo.classList.toggle("aberto");
+      botao.setAttribute("aria-expanded", aberto ? "true" : "false");
+    });
+    document.addEventListener("click", function (e) {
+      if (!grupo.contains(e.target)) { grupo.classList.remove("aberto"); botao.setAttribute("aria-expanded", "false"); }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { grupo.classList.remove("aberto"); botao.setAttribute("aria-expanded", "false"); }
+    });
+  });
+
   var itens = document.querySelectorAll(".reveal");
   if (!("IntersectionObserver" in window)) {
     itens.forEach(function (el) { el.classList.add("in"); });

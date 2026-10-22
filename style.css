@@ -76,6 +76,18 @@ h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 800; color: var(--navy)
 .menu a:not(.btn) { color: #d9e8f6; text-decoration: none; font-weight: 600; font-size: .95rem; padding: 9px 13px; border-radius: 999px; white-space: nowrap; }
 .menu a:not(.btn):hover { background: rgba(255,255,255,.1); color: #fff; }
 .menu .btn { margin-left: 10px; }
+/* Aba com subabas (Sistema de gestão imobiliária) */
+.menu-grupo { position: relative; }
+.menu-topo { font: inherit; color: #d9e8f6; font-weight: 600; font-size: .95rem; padding: 9px 13px; border: 0; border-radius: 999px; background: none; cursor: pointer; white-space: nowrap; }
+.menu-topo span { display: inline-block; margin-left: 4px; font-size: .75em; transition: transform .2s; }
+.menu-topo:hover, .menu-grupo.aberto .menu-topo { background: rgba(255,255,255,.1); color: #fff; }
+.submenu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 300px; padding: 8px; border-radius: 16px; background: #fff; box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s, transform .18s, visibility .18s; z-index: 60; }
+.submenu::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+.menu-grupo:hover .submenu, .menu-grupo:focus-within .submenu, .menu-grupo.aberto .submenu { opacity: 1; visibility: visible; transform: none; }
+.menu-grupo:hover .menu-topo span, .menu-grupo.aberto .menu-topo span { transform: rotate(180deg); }
+.menu .submenu a { display: block; color: #0b2a44; padding: 11px 14px; border-radius: 12px; white-space: normal; font-weight: 700; }
+.menu .submenu a:hover { background: #eef5fb; color: #0b2a44; }
+.submenu a small { display: block; font-weight: 500; font-size: .82rem; color: var(--muted); margin-top: 2px; }
 .burger { display: none; width: 46px; height: 46px; border: 0; border-radius: 12px; background: rgba(255,255,255,.1); cursor: pointer; position: relative; }
 .burger span, .burger span::before, .burger span::after { position: absolute; left: 12px; right: 12px; height: 2px; background: #fff; border-radius: 2px; content: ""; transition: transform .25s, opacity .2s; }
 .burger span { top: 22px; } .burger span::before { top: -7px; left: 0; right: 0; } .burger span::after { top: 7px; left: 0; right: 0; }
@@ -257,6 +269,12 @@ h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 800; color: var(--navy)
   .nav-open .menu { transform: none; visibility: visible; }
   .menu a:not(.btn) { padding: 14px 16px; font-size: 1.05rem; }
   .menu .btn { margin: 10px 0 0; }
+  .menu-topo { width: 100%; text-align: left; padding: 14px 16px; font-size: 1.05rem; border-radius: 14px; }
+  .submenu { position: static; min-width: 0; margin: 2px 0 6px 12px; padding: 0; background: none; box-shadow: none; opacity: 1; visibility: visible; transform: none; display: none; }
+  .menu-grupo.aberto .submenu { display: block; }
+  .menu .submenu a { color: #d9e8f6; padding: 11px 16px; font-weight: 600; }
+  .menu .submenu a:hover { background: rgba(255,255,255,.1); color: #fff; }
+  .submenu a small { color: #9fb6cc; }
   .site-header { background: rgba(4,21,42,.92); }
 }
 @media (max-width: 820px) {
