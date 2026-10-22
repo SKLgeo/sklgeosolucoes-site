@@ -100,9 +100,9 @@ h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 800; color: var(--navy)
 .hero-visual .phone { position: absolute; width: 37%; left: -7%; bottom: -10%; }
 
 /* Molduras de aparelho */
-.device { background: #0b1626; border-radius: 26px; padding: 9px; box-shadow: var(--shadow-lg), inset 0 0 0 1.5px rgba(255,255,255,.13); }
+.device { background: #0b2a44; border-radius: 26px; padding: 9px; box-shadow: var(--shadow-lg), inset 0 0 0 1.5px rgba(255,255,255,.13); }
 .device img { border-radius: 18px; width: 100%; background: #fff; }
-.phone.device { border-radius: 34px; padding: 8px; }
+.phone.device { border-radius: 34px; padding: 8px; background: #a3201b; }
 .phone.device img { border-radius: 27px; }
 .device figcaption, .shot figcaption { font-size: .82rem; color: var(--muted); text-align: center; margin-top: 14px; }
 .shot { margin: 0; }
@@ -112,6 +112,11 @@ h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 800; color: var(--navy)
 .shot .device { transition: transform .35s ease; }
 .shot:hover .device { transform: translateY(-4px); }
 .shots { display: flex; gap: 22px; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
+/* Galeria de telas (páginas de assunto): print + título + texto curto */
+.galeria { gap: 52px 40px; align-items: start; }
+.galeria h3 { margin: 18px 0 6px; }
+.galeria p { margin: 0; color: var(--muted); }
+.galeria .shot--phone { max-width: 260px; margin: 0 auto; }
 
 /* Grades e cartões */
 .grid { display: grid; gap: 22px; }
