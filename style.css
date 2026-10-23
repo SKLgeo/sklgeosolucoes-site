@@ -76,6 +76,12 @@ h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 800; color: var(--navy)
 .menu a:not(.btn) { color: #d9e8f6; text-decoration: none; font-weight: 600; font-size: .95rem; padding: 9px 13px; border-radius: 999px; white-space: nowrap; }
 .menu a:not(.btn):hover { background: rgba(255,255,255,.1); color: #fff; }
 .menu .btn { margin-left: 10px; }
+/* Seletor de idioma (PT · ES · EN) */
+.idiomas { display: flex; gap: 2px; margin-left: 6px; padding: 3px; border-radius: 999px; background: rgba(255,255,255,.08); }
+.menu .idiomas a, .idiomas span { font-size: .76rem; font-weight: 800; letter-spacing: .04em; padding: 5px 9px; border-radius: 999px; color: #d9e8f6; text-decoration: none; }
+.menu .idiomas a:hover { background: rgba(255,255,255,.14); color: #fff; }
+.idiomas span { background: #fff; color: #0b2a44; }
+.pais-num { display: block; font-weight: 850; color: var(--gold); font-size: .9rem; letter-spacing: .12em; margin-bottom: 8px; }
 /* Aba com subabas (Sistema de gestão imobiliária) */
 .menu-grupo { position: relative; }
 .menu-topo { font: inherit; color: #d9e8f6; font-weight: 600; font-size: .95rem; padding: 9px 13px; border: 0; border-radius: 999px; background: none; cursor: pointer; white-space: nowrap; }
@@ -304,6 +310,8 @@ body.lb-aberto { overflow: hidden; }
   .loc-grid { grid-template-columns: 1fr 1fr; }
   .loc-grid .shot--tablet { grid-column: 1 / -1; }
   .menu-topo { width: 100%; text-align: left; padding: 14px 16px; font-size: 1.05rem; border-radius: 14px; }
+  .idiomas { align-self: flex-start; margin: 8px 0 0 12px; }
+  .menu .idiomas a, .idiomas span { padding: 8px 14px; font-size: .9rem; }
   .submenu { position: static; min-width: 0; margin: 2px 0 6px 12px; padding: 0; background: none; box-shadow: none; opacity: 1; visibility: visible; transform: none; display: none; }
   .menu-grupo.aberto .submenu { display: block; }
   .menu .submenu a { color: #d9e8f6; padding: 11px 16px; font-weight: 600; }
