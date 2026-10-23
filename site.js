@@ -29,6 +29,58 @@
     window.addEventListener("resize", function () { if (window.innerWidth > 1080) fecharMenu(); });
   }
 
+  // Contador de acessos anônimo (visto só no Painel do Proprietário): sem cookie, sem IP.
+  // Não conta: localhost, navegador com "não rastrear" e quem abriu o site uma vez com ?nao-contar=1 (o próprio Yuri).
+  var contar = (function () {
+    try {
+      if (/[?&]nao-contar=1/.test(location.search)) localStorage.setItem("skl_nao_contar", "1");
+      if (/[?&]nao-contar=0/.test(location.search)) localStorage.removeItem("skl_nao_contar");
+      if (localStorage.getItem("skl_nao_contar") === "1") return null;
+    } catch (e) { /* sem armazenamento: segue contando */ }
+    if (!/sklgeosolucoes\.com\.br$|github\.io$/.test(location.hostname)) return null;
+    if (navigator.doNotTrack === "1" || window.doNotTrack === "1") return null;
+    var sessao = "";
+    try {
+      sessao = sessionStorage.getItem("skl_sessao") || "";
+      if (!sessao) { sessao = Math.random().toString(36).slice(2) + Date.now().toString(36); sessionStorage.setItem("skl_sessao", sessao); }
+    } catch (e) { sessao = ""; }
+    var ua = navigator.userAgent || "";
+    var dispositivo = /iPad|Tablet/i.test(ua) || (/Android/i.test(ua) && !/Mobile/i.test(ua)) ? "tablet" : /Mobi|iPhone|Android/i.test(ua) ? "celular" : "computador";
+    var origem = null;
+    var utm = /[?&]utm_source=([^&#]+)/.exec(location.search);
+    if (utm) origem = decodeURIComponent(utm[1]);
+    else if (document.referrer) {
+      try {
+        var host = new URL(document.referrer).hostname.replace(/^(www|l|lm|m|mobile)\./, "");
+        if (host && host !== location.hostname.replace(/^www\./, "")) origem = host;
+      } catch (e) { origem = null; }
+    }
+    var pagina = location.pathname.replace(/\/index\.html$/, "/") || "/";
+    return function (tipo) {
+      try {
+        fetch("https://xigwlofqkmiibzbongkn.supabase.co/rest/v1/rpc/site_registrar_acesso", {
+          method: "POST", keepalive: true,
+          headers: { "Content-Type": "application/json", apikey: "sb_publishable_mqppAm9n79xl6rYafzXyNQ_mGVoX3Vd" },
+          body: JSON.stringify({ p_tipo: tipo, p_pagina: pagina, p_origem: origem, p_dispositivo: dispositivo, p_sessao: sessao })
+        }).catch(function () {});
+      } catch (e) { /* contador nunca atrapalha o site */ }
+    };
+  })();
+  if (contar) {
+    contar("visita");
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[href]");
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      if (/^mailto:/i.test(href)) contar("email");
+      else if (/wa\.me\//i.test(href)) {
+        var texto = "";
+        try { texto = decodeURIComponent(href); } catch (err) { texto = href; }
+        contar(/demonstra/i.test(texto) ? "demonstracao" : "whatsapp");
+      }
+    }, true);
+  }
+
   // Aba com subabas: abre/fecha no toque ou clique (no computador também abre ao passar o mouse)
   document.querySelectorAll(".menu-grupo").forEach(function (grupo) {
     var botao = grupo.querySelector(".menu-topo");
