@@ -284,6 +284,96 @@ body.lb-aberto { overflow: hidden; }
 .wa-float { position: fixed; right: 16px; bottom: 16px; z-index: 40; display: none; }
 .wa-float.btn { width: auto; padding: 13px 20px; box-shadow: 0 10px 28px rgba(0,0,0,.35); }
 
+/* ---------- Home enxuta (25/10/2026): público, comparativo, abas de recursos, pilares e planos ---------- */
+.section--compacta { padding-block: clamp(56px, 7vw, 92px); }
+.centro { text-align: center; margin: 28px 0 0; }
+.fine-dica { font-size: .86rem; color: var(--muted); margin: 18px 0 0; }
+.fine-dica--centro { text-align: center; }
+.section--dark .fine-dica { color: #a9c1d8; }
+.section--dark .fine-dica a { color: #fff; }
+
+/* Para quem: três cartões que levam às páginas de cada operação */
+.publicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.publico { display: flex; flex-direction: column; padding: 30px 28px; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); text-decoration: none; color: inherit; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.publico:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 18px 44px rgba(4,21,42,.16); }
+.publico .icon { width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; margin-bottom: 18px; background: linear-gradient(135deg, var(--blue), var(--cyan)); box-shadow: 0 8px 18px rgba(18,121,199,.35); }
+.publico .icon svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.publico h3 { font-size: 1.25rem; color: var(--navy); margin-bottom: 10px; }
+.publico p { color: var(--muted); margin: 0 0 18px; font-size: .98rem; }
+.publico .mais { margin-top: auto; color: var(--blue); font-weight: 800; font-size: .95rem; }
+.faixa-extra { margin: 28px auto 0; max-width: 900px; text-align: center; padding: 16px 22px; border-radius: 14px; background: var(--soft); color: var(--ink); font-size: .96rem; }
+.faixa-extra a { font-weight: 800; white-space: nowrap; }
+
+/* Hoje × Com a SKL */
+.comparativo { border-radius: var(--radius); overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.comp-cab, .comp-linha { display: grid; grid-template-columns: 1fr 1fr; }
+.comp-cab span { padding: 14px 20px; font-size: .78rem; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+.comp-cab span:first-child { color: var(--bad); background: #fbeeed; }
+.comp-cab span:last-child { color: var(--ok); background: #e9f6ef; }
+.comp-linha span { padding: 14px 20px; font-size: .95rem; border-top: 1px solid var(--line); }
+.comp-linha span:first-child { color: var(--muted); }
+.comp-linha span:last-child { color: var(--ink); font-weight: 650; border-left: 1px solid var(--line); }
+
+/* Abas de recursos: um assunto por vez, sem empilhar todas as telas */
+.abas { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 auto 34px; padding: 6px; max-width: max-content; border-radius: 999px; background: var(--soft); border: 1px solid var(--line); }
+.abas button { font: inherit; font-size: .93rem; font-weight: 750; color: var(--navy); padding: 10px 18px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; white-space: nowrap; transition: background .2s, color .2s, box-shadow .2s; }
+.abas button:hover { background: #fff; }
+.abas button[aria-selected="true"] { background: var(--navy); color: #fff; box-shadow: 0 6px 16px rgba(10,42,74,.28); }
+.no-js .abas, html:not(.js) .abas { display: none; }
+.painel { gap: clamp(28px, 5vw, 64px); align-items: center; grid-template-columns: 1fr 1.15fr; }
+.painel:not([hidden]) { display: grid; }
+html:not(.js) .painel { display: grid; margin-bottom: 64px; }
+.js .painel:not([hidden]) { animation: painel-entra .35s ease; }
+@keyframes painel-entra { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.painel-texto h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: var(--navy); line-height: 1.18; margin-bottom: 14px; }
+.painel-texto > p { color: var(--muted); font-size: 1.02rem; margin: 0; }
+.painel-texto .checks { margin-top: 20px; }
+.painel-link { display: inline-block; margin-top: 22px; font-weight: 800; text-decoration: none; }
+.painel-link:hover { text-decoration: underline; }
+.painel-media { display: flex; justify-content: center; align-items: flex-start; gap: 20px; min-width: 0; }
+.painel-media .shot--tablet { max-width: 560px; width: 100%; }
+.painel-media--par .shot { flex: 1 1 0; min-width: 0; max-width: 250px; }
+.painel-media--par .shot:not(.shot--phone) { max-width: 300px; }
+.painel-media--misto .shot--tablet { flex: 1.6 1 0; min-width: 0; }
+.painel-media--misto .shot--phone { flex: 1 1 0; min-width: 0; max-width: 220px; }
+.painel-media .phone.device img { aspect-ratio: 7 / 10; object-fit: cover; object-position: top; }
+
+/* Reservas: passos em 2×2 ao lado dos celulares */
+.split .steps4 { grid-template-columns: repeat(2, 1fr); margin: 28px 0 0; gap: 14px; }
+.split .step4 { padding: 20px 18px; }
+.shots--par { flex-wrap: nowrap; }
+.shots--par .shot--phone { flex: 1 1 0; min-width: 0; max-width: 250px; }
+
+/* "Com a cara da sua empresa" ao lado do texto */
+.split .marcas { margin: 0 auto; max-width: 660px; }
+.section--soft .marcas figcaption { color: var(--muted); }
+@media (min-width: 1021px) {
+  #marca .split { grid-template-columns: 1.3fr 1fr; }
+  #problema h2 { font-size: clamp(1.9rem, 3.3vw, 2.5rem); }
+}
+
+/* Pilares: integração, segurança e implantação */
+.pilares .card { display: flex; flex-direction: column; }
+.pilares .card > p { margin-bottom: 4px; }
+.pilares .checks { margin-top: 16px; }
+.pilares .checks li { font-size: .95rem; }
+.pilares .painel-link { margin-top: auto; padding-top: 20px; }
+.passos { list-style: none; counter-reset: ps; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
+.passos li { counter-increment: ps; position: relative; padding-left: 40px; font-size: .95rem; color: var(--muted); }
+.passos li::before { content: counter(ps); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 850; font-size: .82rem; display: grid; place-items: center; }
+.passos li b { color: var(--ink); }
+
+/* Planos */
+.planos-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 22px; align-items: stretch; }
+.plan .checks { margin-top: 14px; }
+.plan-impl { display: flex; justify-content: space-between; gap: 16px; margin: auto 0 0; padding-top: 22px; border-top: 1px solid var(--line); color: var(--ink); font-size: .98rem; }
+.plan .checks + .plan-impl { margin-top: 22px; }
+.precos { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: .97rem; }
+.precos td { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.precos tr:last-child td { border-bottom: 0; }
+.precos td:last-child { text-align: right; white-space: nowrap; }
+.precos b { color: var(--navy); }
+
 /* Entrada suave (só se o JavaScript estiver ativo) */
 .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
 .js .reveal.in { opacity: 1; transform: none; }
@@ -300,6 +390,22 @@ body.lb-aberto { overflow: hidden; }
   .steps, .steps--5 { grid-template-columns: repeat(2, 1fr); }
   .grid--3, .roles { grid-template-columns: repeat(2, 1fr); }
   h2 { max-width: none; }
+  .painel { grid-template-columns: 1fr; }
+  .pilares { grid-template-columns: 1fr 1fr; }
+  .pilares .card:last-child { grid-column: 1 / -1; }
+  .planos-grid { grid-template-columns: 1fr; }
+  .split .marcas { max-width: 680px; }
+}
+@media (max-width: 900px) {
+  /* Abas viram uma faixa que desliza para o lado */
+  .abas { flex-wrap: nowrap; justify-content: flex-start; max-width: none; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; border-radius: 16px; margin-inline: -4px; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .abas::-webkit-scrollbar { display: none; }
+  .abas button { scroll-snap-align: start; flex: 0 0 auto; }
+  .abas button:last-child { margin-right: 40px; }
+  .publicos { grid-template-columns: 1fr; gap: 14px; }
+  .publico { display: grid; grid-template-columns: auto 1fr; column-gap: 18px; padding: 22px; }
+  .publico .icon { grid-row: 1 / 4; margin: 0; width: 46px; height: 46px; }
+  .publico p { margin-bottom: 10px; }
 }
 @media (max-width: 1080px) {
   .burger { display: block; }
@@ -341,6 +447,32 @@ body.lb-aberto { overflow: hidden; }
   .cta-row { flex-direction: column; }
   .card { padding: 22px; }
   .shot--phone { max-width: 280px; }
+  .pilares { grid-template-columns: 1fr; }
+  .pilares .card:last-child { grid-column: auto; }
+  .split .steps4 { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .split .step4 { padding: 16px 14px; }
+  .split .step4 .big { font-size: 1.7rem; }
+  .split .step4 p { font-size: .86rem; }
+  .comp-linha span, .comp-cab span { padding: 12px 14px; font-size: .9rem; }
+  .comp-cab span { font-size: .72rem; }
+  .painel-media { gap: 12px; }
+  .painel-media--par .shot, .painel-media--misto .shot--phone { max-width: none; }
+  .painel-media .phone.device { border-radius: 24px; padding: 6px; }
+  .painel-media .phone.device img { border-radius: 19px; }
+  .painel-media figcaption { font-size: .76rem; margin-top: 8px; }
+  .shots--par .shot--phone { max-width: none; }
+  .faixa-extra { font-size: .92rem; }
+  .plan-impl { flex-direction: column; gap: 4px; }
+  /* Na home, as 3 marcas continuam em leque no celular em vez de empilhar */
+  .split .marcas { flex-direction: row; align-items: flex-end; gap: 0; padding-top: 10px; }
+  .split .marcas .shot { width: auto; max-width: none; }
+  .split .marcas .shot:nth-child(1) { transform: rotate(-4deg) translateY(10px) !important; margin-right: -7% !important; }
+  .split .marcas .shot:nth-child(2) { transform: scale(1.08) !important; }
+  .split .marcas .shot:nth-child(3) { transform: rotate(4deg) translateY(10px) !important; margin-left: -7% !important; }
+  .split .marcas .device { padding: 4px; border-radius: 14px; }
+  .split .marcas .device img { border-radius: 10px; }
+  .split .marcas .zoom-dica { display: none; }
+  .split .marcas figcaption { font-size: .72rem; margin-top: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

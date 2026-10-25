@@ -97,6 +97,35 @@
     });
   });
 
+  // Abas de recursos da home: mostra um assunto por vez (sem JavaScript, todos ficam visíveis um embaixo do outro)
+  document.querySelectorAll("[role=tablist]").forEach(function (lista) {
+    var abas = Array.prototype.slice.call(lista.querySelectorAll("[role=tab]"));
+    function ativar(aba, focar) {
+      abas.forEach(function (a) {
+        var sel = a === aba;
+        a.setAttribute("aria-selected", sel ? "true" : "false");
+        a.tabIndex = sel ? 0 : -1;
+        var p = document.getElementById(a.getAttribute("aria-controls"));
+        if (p) p.hidden = !sel;
+      });
+      if (focar) aba.focus();
+      // No celular a faixa de abas desliza: traz a aba escolhida para a vista, sem mexer na rolagem da página
+      var l = lista.getBoundingClientRect(), r = aba.getBoundingClientRect();
+      if (r.left < l.left || r.right > l.right) lista.scrollLeft += r.left - l.left - 16;
+    }
+    abas.forEach(function (aba, i) {
+      aba.addEventListener("click", function () { ativar(aba, false); });
+      aba.addEventListener("keydown", function (e) {
+        var j = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : e.key === "Home" ? 0 : e.key === "End" ? abas.length - 1 : null;
+        if (j === null) return;
+        e.preventDefault();
+        ativar(abas[(j + abas.length) % abas.length], true);
+      });
+    });
+    var inicial = abas.filter(function (a) { return a.getAttribute("aria-selected") === "true"; })[0] || abas[0];
+    if (inicial) ativar(inicial, false);
+  });
+
   // Zoom: clicar numa tela abre a versão grande (assets/<nome>-g.webp), com setas para as outras telas da página
   var telas = Array.prototype.slice.call(document.querySelectorAll(".device img"));
   if (telas.length) {
