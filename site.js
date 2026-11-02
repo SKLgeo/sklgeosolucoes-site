@@ -30,7 +30,7 @@
   }
 
   // Contador de acessos anônimo (visto só no Painel do Proprietário): sem cookie, sem IP.
-  // Não conta: localhost, navegador com "não rastrear" e quem abriu o site uma vez com ?nao-contar=1 (o próprio Yuri).
+  // Não conta: localhost, navegador com "não rastrear" e quem abriu o site uma vez com ?nao-contar=1 (a própria equipe da SKL).
   var contar = (function () {
     try {
       if (/[?&]nao-contar=1/.test(location.search)) localStorage.setItem("skl_nao_contar", "1");
